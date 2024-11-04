@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Friend Management and Room Creation/Joining</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+      nav {
+        background-color: #007bff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+      }
+      nav ul li {
+        margin-right: 20px;
+      }
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+      nav button {
+        background-color: #0056b3;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+      nav button:hover {
+        background-color: #003f7f;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .friend-request,
+      .friend-list-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>CHAT-CORD</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#" id="friends-tab">Friends</a></li>
+        <li><a href="#" id="rooms-tab">Rooms</a></li>
+      </ul>
+      <button id="logout">Logout</button>
+    </nav>
+
+    <div class="container" id="friends-container">
+      <h2>Friend Management</h2>
+      <section id="addFriends">
+        <h3>Add Friends</h3>
+        <div class="form-group">
+          <input
+            type="text"
+            id="friendEmail"
+            placeholder="Enter friend's email"
+          />
+        </div>
+        <div class="form-group">
+          <button id="addFriend-btn">Add Friend</button>
+        </div>
+      </section>
+
+      <section id="pendingRequests">
+        <h3>Pending Requests</h3>
+        <ul id="pendingList"></ul>
+      </section>
+
+      <section id="allFriends">
+        <h3>All Friends</h3>
+        <ul id="allFriendsList">
+          <!-- All friends will be listed here -->
+        </ul>
+      </section>
+    </div>
+
+    <div class="container" id="rooms-container" style="display: none">
+      <h2>Room Creation and Joining</h2>
+      <div class="form-group">
+        <label for="roomName">Room Name:</label>
+        <input
+          type="text"
+          id="roomName"
+          placeholder="Enter room name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <button id="createroom-btn">Create Room</button>
+      </div>
+      <div class="form-group">
+        <label for="joinCode">Join Code:</label>
+        <input
+          type="text"
+          id="joinCode"
+          placeholder="Enter join code"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <button id="join-btn">Join Room</button>
+      </div>
+      <div id="message"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/home.js"></script>
+    <script>
+      document
+        .getElementById("friends-tab")
+        .addEventListener("click", function () {
+          document.getElementById("friends-container").style.display = "block";
+          document.getElementById("rooms-container").style.display = "none";
+        });
+
+      document
+        .getElementById("rooms-tab")
+        .addEventListener("click", function () {
+          document.getElementById("friends-container").style.display = "none";
+          document.getElementById("rooms-container").style.display = "block";
+        });
+    </script>
+  </body>
+</html>
